@@ -4,6 +4,7 @@ package reflection;
 import dto.User;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 
 /**
  * 利用反射获取实体属性值
@@ -11,19 +12,23 @@ import java.lang.reflect.Field;
  */
 public class Reflection {
 
-    public static boolean judgement(Object object) throws IllegalAccessException {
+    public static boolean judgement(Object object,String[] arr) throws IllegalAccessException {
         boolean flag = true;
 
         if (null != object) {
             Class<?> objectClass = object.getClass();
-            // 所有属性
+            // 获得所在类的所有字段属性
             Field[] fields = objectClass.getDeclaredFields();
             for (Field field : fields) {
                 field.setAccessible(true);
-                Object value = field.get(object);
-                if (null == value || "".equals(value)) {
-                    return false;
+                System.out.println(field.getName());
+                if(Arrays.asList(arr).contains(field.getName())){
+                    Object value = field.get(object);
+                    if (null == value || "".equals(value)) {
+                        return false;
+                    }
                 }
+
             }
         }
         return flag;
@@ -35,6 +40,7 @@ public class Reflection {
         user.setSex("男");
         user.setAge(11);
         //user.setIdCard("111");
-        System.out.println(judgement(user));
+        String[] arr ={"name","sex","age"};
+        System.out.println(judgement(user,arr));
     }
 }
