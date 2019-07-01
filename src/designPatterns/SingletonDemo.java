@@ -14,6 +14,7 @@ public class SingletonDemo
         instance.print();//饿汉式
         instance.print1();//懒汉式 存在
 
-
+        MultipleDesign multipleDesign = MultipleDesign.getInstance("red");
+        System.out.println(multipleDesign.toString());
     }
 }
