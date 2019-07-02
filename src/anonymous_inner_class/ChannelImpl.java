@@ -12,6 +12,10 @@ public class ChannelImpl implements IChannel{
     public void send(IMessage msg) {
         System.out.println("发送消息：" + msg.getContent());
     }
+
+    @Override
+    public void send1() {}
+
     class MessageImpl implements IMessage{
 
         @Override
@@ -19,4 +23,5 @@ public class ChannelImpl implements IChannel{
                 return "BAIDU.COM";
         }
     }
+
 }
