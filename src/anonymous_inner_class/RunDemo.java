@@ -17,5 +17,8 @@ public class RunDemo {
 
         IChannel channel1 = IChannel.getInstance();
         channel1.send1();
+
+        //匿名内部类
+        IMessage.getInstance().send("匿名内部类实现");
     }
 }
