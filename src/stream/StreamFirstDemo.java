@@ -32,10 +32,16 @@ public class StreamFirstDemo {
      *                   .collect(groupingBy(Transaction::getCurrency)); // 按货币分组
      */
 
-    //Stream 写法 将之前lambda筛选方式转成stream筛选再转回list
+    //Stream(顺序处理 stream)：将之前lambda筛选方式转成stream筛选再转回list
     /**
      * List<Apple> heavyApples =
      *      inventory.stream().filter((Apple a) -> a.getWeight()>150)
+     *                        .collection(toList());
+     */
+    //Stream(并序处理 parallelStream)
+    /**
+     * List<Apple> heavyApples =
+     *      inventory.parallelStream().filter((Apple a) -> a.getWeight()>150)
      *                        .collection(toList());
      */
 
