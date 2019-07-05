@@ -9,7 +9,7 @@ public interface IMessage {
         return new IMessage() {
             @Override
             public void send(String str) {
-                System.out.println(str);
+                System.out.println(str+"信息");
             }
         };
     }
