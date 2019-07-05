@@ -1,7 +1,5 @@
 package lambda;
 
-import dto.Apple;
-
 import java.util.ArrayList;
 import java.util.List;
 

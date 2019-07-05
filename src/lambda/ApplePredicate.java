@@ -1,7 +1,5 @@
 package lambda;
 
-import dto.Apple;
-
 /**
  * @author ambereye
  * @desc 策略模式需要的接口

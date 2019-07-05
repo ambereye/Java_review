@@ -1,5 +1,7 @@
 package lambda;
 
+import java.util.Arrays;
+
 /**
  * TODO
  * 方法引用
@@ -27,5 +29,9 @@ public class JavaDemo {
         //引用构造方法
         IFunction<Person> fun = Person::new;
         System.out.println(fun.create("张三",20));
+
+        String[] stringArray = { "Barbara", "James", "Mary", "John", "Patricia", "Robert", "Michael", "Linda" };
+        Arrays.sort(stringArray, String::compareToIgnoreCase);
+        System.out.println(stringArray.length);
     }
 }
