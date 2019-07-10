@@ -7,14 +7,14 @@ package collection;
  * @author ambereye
  * @date 2019/7/10
  */
-public class NodeDemo<E> implements ILink   {
+public class NodeDemo<E> implements ILink<E>{
     private class Node {
         private E data;
         private Node next;
+
         private Node(E data) {
             this.data = data;
         }
-
         //第一次调用 this.root
         //第一次调用 this.root.next
         //第一次调用 this.root.next.next
@@ -25,10 +25,12 @@ public class NodeDemo<E> implements ILink   {
                 this.next.addNode(newNode);
             }
         }
+    }
         // 定义成员
         private Node root;
         //定义方法
-        public void add (E e){
+        @Override
+        public void add(E e){
             if(e==null){
                 return;
             }
@@ -42,5 +44,3 @@ public class NodeDemo<E> implements ILink   {
 
         }
     }
-
-}
