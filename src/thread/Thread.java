@@ -9,5 +9,6 @@ package thread;
 public class Thread {
     public static void main(String[] args) {
         System.out.println("this weekends  is too fast");
+        System.out.println("7.15    23.30下班");
     }
 }
