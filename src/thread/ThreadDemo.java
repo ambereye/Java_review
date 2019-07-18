@@ -6,7 +6,7 @@ package thread;
  * @author ambereye
  * @date 2019/7/11
  */
-class MyThread extends Thread {//线程主体类
+class MyThread implements Runnable {//线程主体类
     private String title;
 
     public MyThread(String title) {
@@ -22,12 +22,12 @@ class MyThread extends Thread {//线程主体类
 }
 
 public class ThreadDemo {
-    public static void main(String[] args) {
-        new MyThread("线程A").start();
-        new MyThread("线程B").start();
-        new MyThread("线程C").start();
-
-    }
+//    public static void main(String[] args) {
+//        new MyThread("线程A").start();
+//        new MyThread("线程B").start();
+//        new MyThread("线程C").start();
+//
+//    }
 
     /**
      * if (threadStatus != 0)
@@ -52,4 +52,16 @@ public class ThreadDemo {
      */
 
     // 可以用runable实现
+    public static void main(String[] args) {
+        Thread threadA = new Thread(new MyThread("线程A"));
+        Thread threadB = new Thread(new MyThread("线程B"));
+        Thread threadC = new Thread(new MyThread("线程C"));
+        threadA.start();
+        threadB.start();
+        threadC.start();
+
+    }
+
+
 }
+
