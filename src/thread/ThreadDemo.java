@@ -52,14 +52,38 @@ public class ThreadDemo {
      */
 
     // 可以用runable实现
-    public static void main(String[] args) {
-        Thread threadA = new Thread(new MyThread("线程A"));
-        Thread threadB = new Thread(new MyThread("线程B"));
-        Thread threadC = new Thread(new MyThread("线程C"));
-        threadA.start();
-        threadB.start();
-        threadC.start();
+//    public static void main(String[] args) {
+//        Thread threadA = new Thread(new MyThread("线程A"));
+//        Thread threadB = new Thread(new MyThread("线程B"));
+//        Thread threadC = new Thread(new MyThread("线程C"));
+//        threadA.start();
+//        threadB.start();
+//        threadC.start();
+//
+//    }
+    //lambda
+//    public static void main(String[] args) {
+//        for (int i = 0; i < 3; i++) {
+//            String title ="线程对象 -" + i;
+//            Runnable run = ()->{
+//                for (int j = 0; j < 10; j++) {
+//                    System.out.println(title + "运行,x=" + j);
+//                }
+//            };
+//            new Thread().start();
+//        }
+//    }
 
+    // lambda化简
+    public static void main(String[] args) {
+        for (int i = 0; i < 3; i++) {
+            String title ="线程对象-" + i;
+            new Thread(()->{
+                for (int j = 0; j < 10; j++) {
+                    System.out.println(title + "运行,x=" + j);
+                }
+            }).start();
+        }
     }
 
 
