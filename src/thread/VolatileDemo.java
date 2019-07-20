@@ -34,3 +34,11 @@ class ThreadDemo1 {
 
     }
 }
+
+/**
+ * volatile 主要在属性上使用，而synchronized是在代码块中使用
+ * volatile 无法描述同步处理，他是一种直接内存的处理，避免的副本操作。
+ *
+  */
+
+
