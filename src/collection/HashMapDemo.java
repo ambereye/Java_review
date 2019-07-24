@@ -10,4 +10,5 @@ import java.util.HashMap;
  */
 public class HashMapDemo {
     HashMap hashMap = new HashMap();
+    // 基于map接口实现
 }
