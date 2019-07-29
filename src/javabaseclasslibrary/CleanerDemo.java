@@ -28,31 +28,31 @@ class Member implements Runnable {
     }
 }
 
-class MemeberCleaning implements AutoCloseable {// 实现清除处理
-    private static final Cleaner cleaner = Cleaner.create();//创建清除处理
-    private static Member member;
-    private static Cleaner.Cleanable cleanable;
-
-    public MemeberCleaning() {
-        this.member = new Member();//创建新对象
-        this.cleanable = this.cleaner.register(this, this.member);
-    }
-
-    @Override
-    public void close() throws Exception {
-        this.cleanable.clean();//启动多线程
-    }
-
-}
-
-public class CleanerDemo {
-    public static void main(String[] args) {
-//        Member men = new Member();
-//        men = null;
-//        System.gc();
-        //上面为过去操作的方式
-        try (MemeberCleaning mc = new MemeberCleaning()) {
-//执行相关代码
-        }catch (Exception e){}
-    }
-}
+//class MemeberCleaning implements AutoCloseable {// 实现清除处理
+//    private static final Cleaner cleaner = Cleaner.create();//创建清除处理
+//    private static Member member;
+//    private static Cleaner.Cleanable cleanable;
+//
+//    public MemeberCleaning() {
+//        this.member = new Member();//创建新对象
+//        this.cleanable = this.cleaner.register(this, this.member);
+//    }
+//
+//    @Override
+//    public void close() throws Exception {
+//        this.cleanable.clean();//启动多线程
+//    }
+//
+//}
+//
+//public class CleanerDemo {
+//    public static void main(String[] args) {
+////        Member men = new Member();
+////        men = null;
+////        System.gc();
+//        //上面为过去操作的方式
+//        try (MemeberCleaning mc = new MemeberCleaning()) {
+////执行相关代码
+//        }catch (Exception e){}
+//    }
+//}
