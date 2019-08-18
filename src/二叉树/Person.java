@@ -1,19 +1,25 @@
-package lambda;
+package 二叉树;
 
 /**
  * TODO
  *
  * @author ambereye
- * @date 2019/7/3
+ * @date 2019/8/18
  */
-public class Person {
+public class Person implements Comparable<Person>{
     private String name;
     private int age;
 
     public Person (String name,int age){
-    this.name=name;
-    this.age=age;
+        this.name=name;
+        this.age=age;
     }
+
+    @Override
+    public int compareTo(Person per) {
+        return this.age - per.age;
+    }
+
     @Override
     public String toString(){
         return "姓名:"+this.name+"年龄:"+this.age+"\n";
@@ -33,4 +39,6 @@ public class Person {
     public void setAge(int age) {
         this.age = age;
     }
+
+
 }
