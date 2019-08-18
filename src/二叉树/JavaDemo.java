@@ -14,8 +14,16 @@ public class JavaDemo {
     public static void main(String[] args) {
         BinaryTree<Person> tree = new BinaryTree<Person>();
         tree.add(new Person("小强-80",80));
-        tree.add(new Person("小王-30",30));
-        tree.add(new Person("小八-50",50));
+        tree.add(new Person("小王-50",50));
+        tree.add(new Person("小八-60",60));
+        tree.add(new Person("小八-30",30));
+        tree.add(new Person("小八-90",90));
+        tree.add(new Person("小八-10",10));
+        tree.add(new Person("小八-55",55));
+        tree.add(new Person("小八-70",70));
+        tree.add(new Person("小八-85",85));
+        tree.add(new Person("小八-95",95));
+        tree.remove(new Person("小八-80",80));
         System.out.println(Arrays.toString(tree.toArrary()));
     }
 
@@ -65,6 +73,27 @@ class BinaryTree<T extends Comparable<T>> {
                 this.right.toArraryNode();//递归调用
             }
         }
+
+        /**
+         * 获取要删除的节点对象
+         */
+        public Node getRemoveNode(Comparable<T> data) {
+            if (data.compareTo((T) this.data) == 0) {
+                return this;
+            } else if(data.compareTo((T) this.data) < 0){
+                if (this.left != null) { // 现在没有左子树
+                    return this.left.getRemoveNode(data);
+                } else { // 需要将左边继续判断
+                    return null;
+                }
+            }else{
+                if (this.right != null) {
+                    return this.right.getRemoveNode(data);
+                } else {
+                    return null;
+                }
+            }
+        }
     }
         // 二叉树实现
         private Node root; // 保存的是根节点
@@ -105,5 +134,52 @@ class BinaryTree<T extends Comparable<T>> {
         }
 
 
-    }
+        /**
+         * 执行数据删除处理
+         */
+        public void remove(Comparable<T> data){
+            if(this.root==null){
+                return;//结束调用
+            }else{
+                if(this.root.data.compareTo((T) data) == 0){ // 要删除的是根节点
+                    Node moveNode = this.root.right; // 移动的节点
+                    while(moveNode.left != null){//现在还有左边的节点
+                        moveNode = moveNode.left;//一直向左找
+                    }
+                    moveNode.left = this.root.left;
+                    moveNode.right = this.root.right;
+                    moveNode.parent.left = null;
+                    this.root = moveNode;//改变根节点
+                }else{
+                    Node removeNode = this.root.getRemoveNode(data); // 知道要删除的节点
+                    if(removeNode != null){//找到要删除的对象信息
+                        // 情况一 : 没有任何的子节点
+                        if(removeNode.left==null&&removeNode.right==null){
+                            removeNode.left = null;
+                            removeNode.right = null;
+                            removeNode.parent = null; //父节点直接断开
+                        } else if(removeNode.left!=null&&removeNode.right==null){ //左边不为空
+                            removeNode.parent.left = removeNode.left;
+                            removeNode.left.parent = removeNode.parent;
+                        } else if(removeNode.left==null&&removeNode.right!=null){ //右边不为空
+                            removeNode.parent.left = removeNode.right;
+                            removeNode.right.parent = removeNode.parent;
+                        }else{//两边都有节点,则将右边节点中最左边的节点找到,改变其引用
+                            Node moveNode = removeNode.right; // 移动的节点
+                            while(moveNode.left != null){//现在还有左边的节点
+                                moveNode = moveNode.left;//一直向左找
+                            }
+                            removeNode.parent.left = moveNode;
+                            moveNode.parent.left = null;//断开原本的连接
+                            moveNode.parent = removeNode.parent;
+                            moveNode.right = removeNode.right;//改变原始右节点的指向
+                            moveNode.left = removeNode.left;
+                        }
+                    }
+                }
+                this.count--;
+            }
+
+        }
+}
 //}
