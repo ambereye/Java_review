@@ -25,8 +25,6 @@ public class SerializableDemo {
         ois.close();
         return obj;
     }
-
-
 }
 
 class Person implements Serializable {
