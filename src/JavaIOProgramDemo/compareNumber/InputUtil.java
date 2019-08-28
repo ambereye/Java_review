@@ -11,6 +11,25 @@ import java.util.Scanner;
  */
 public class InputUtil {
     public InputUtil() {}
+    public static String getString(String prompt) {
+        String str = null;
+        boolean flag = true;
+        while(flag){
+            Scanner input = new Scanner(System.in);
+            System.out.println(prompt);
+            if (input.hasNext()) {
+                str = input.next().trim();
+                if (!"".equals(str)) {//不是空
+                    flag = false; //结束循环
+                }else{
+                    System.out.println("输入内容不允许为空!");
+                }
+            }else{
+                System.out.println("输入内容不允许为空!");
+            }
+        }
+        return str;
+    }
     /**
      * 实现键盘接受数字操作
      */
