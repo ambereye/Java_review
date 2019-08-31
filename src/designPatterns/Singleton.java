@@ -19,12 +19,18 @@ public class Singleton {
         System.out.println("饿汉式，单例设计模式");
     }
 
-    private static Singleton instance;
+    //懒汉式
+    private static volatile Singleton instance = null;
 
     public static Singleton getINSTANCE() {
         if (instance == null) {//第一次使用
-            instance = new Singleton();// 实例化对象
-        }
+            synchronized (Singleton.class){//解决线程同步
+                    if (instance==null) {
+                        instance = new Singleton();// 实例化对象
+                    }
+                }
+
+            }
         return INSTANCE;
     }
 
